@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -66,7 +76,7 @@
 	  return (0, _camelCase3.default)(prefix + '_' + eventName);
 	}
 
-	function subscribeFunctionsOf(subscribers, eventName) {
+	function subscribeFunctionsOf(subscriberList, eventName) {
 	  var functions = [];
 	  var functionName = functionNameOf(eventName, 'subscribe');
 	  var _iteratorNormalCompletion = true;
@@ -74,7 +84,7 @@
 	  var _iteratorError = undefined;
 
 	  try {
-	    for (var _iterator = subscribers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	    for (var _iterator = subscriberList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	      var subscriber = _step.value;
 
 	      if ((0, _isFunction3.default)(subscriber[functionName])) {
@@ -1129,4 +1139,6 @@
 
 
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;

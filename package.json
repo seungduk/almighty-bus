@@ -1,6 +1,6 @@
 {
   "name": "almighty-bus",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple event bus",
   "main": "dist/bus.js",
   "devDependencies": {
@@ -22,7 +22,7 @@
   "scripts": {
     "lint": "eslint src test",
     "make": "webpack",
-    "test": "mocha test/*  --compilers js:babel-register --colors"
+    "test": "npm run lint && mocha test/*  --compilers js:babel-register --colors"
   },
   "repository": {
     "type": "git",

@@ -5,6 +5,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: './src/bus.js',
   output: {
+    libraryTarget: 'umd',
     path: './dist/',
     filename: 'bus.js',
   },

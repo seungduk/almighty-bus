@@ -1,6 +1,6 @@
 
 import { assert } from 'chai';
-import bus from '../src/bus';
+import bus from '../dist/bus';
 
 // Import all mocha globals for eslint
 /* eslint-env mocha */
