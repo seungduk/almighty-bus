@@ -7,10 +7,10 @@ function functionNameOf(eventName, prefix) {
   return _.camelCase(`${prefix}_${eventName}`);
 }
 
-function subscribeFunctionsOf(subscribers, eventName) {
+function subscribeFunctionsOf(subscriberList, eventName) {
   const functions = [];
   const functionName = functionNameOf(eventName, 'subscribe');
-  for (let subscriber of subscribers) {
+  for (const subscriber of subscriberList) {
     if (_.isFunction(subscriber[functionName])) {
       functions.push(subscriber[functionName]);
     }
@@ -22,13 +22,13 @@ const maxCallStackSize = 10;
 const callStack = [];
 function post(eventName, ...parameters) {
   if (callStack.length >= maxCallStackSize) {
-    throw new Error(`Post aborted. Call stack size reached its maximum(${maxCallStackSize}).`)
+    throw new Error(`Post aborted. Call stack size reached its maximum(${maxCallStackSize}).`);
   }
   callStack.push({
     eventName,
     parameters,
   });
-  for (let callback of subscribeFunctionsOf(subscribers, eventName)) {
+  for (const callback of subscribeFunctionsOf(subscribers, eventName)) {
     callback(...parameters);
   }
   callStack.pop();

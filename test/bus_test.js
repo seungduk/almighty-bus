@@ -1,6 +1,9 @@
 
-const assert = require('chai').assert;
-const bus = require('../src/bus');
+import { assert } from 'chai';
+import bus from '../src/bus';
+
+// Import all mocha globals for eslint
+/* eslint-env mocha */
 
 describe('Bus', () => {
   describe('.post', () => {

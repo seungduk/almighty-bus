@@ -1,6 +1,6 @@
 {
   "name": "almighty-bus",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple event bus",
   "main": "dist/bus.js",
   "devDependencies": {
@@ -10,12 +10,17 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-register": "^6.14.0",
     "chai": "^3.5.0",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.0",
     "lodash": "^4.15.0",
     "lodash-webpack-plugin": "^0.10.0",
     "mocha": "^3.0.2",
     "webpack": "^1.13.2"
   },
   "scripts": {
+    "lint": "eslint src test",
     "make": "webpack",
     "test": "mocha test/*  --compilers js:babel-register --colors"
   },
