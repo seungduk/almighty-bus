@@ -99,6 +99,7 @@
 	  return functions;
 	}
 
+	var maxCallStackSize = 10;
 	var callStack = [];
 	function post(eventName) {
 	  for (var _len = arguments.length, parameters = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -120,7 +121,7 @@
 	    for (var _iterator2 = subscribeFunctionsOf(subscribers, eventName)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
 	      var callback = _step2.value;
 
-	      callback(parameters);
+	      callback.apply(undefined, parameters);
 	    }
 	  } catch (err) {
 	    _didIteratorError2 = true;
@@ -151,6 +152,19 @@
 	function unregister(subscriber) {
 	  (0, _pull3.default)(subscribers, subscriber);
 	}
+
+	function unregisterAll() {
+	  while (subscribers.length > 0) {
+	    subscribers.pop();
+	  }
+	}
+
+	module.exports = {
+	  post: post,
+	  register: register,
+	  unregister: unregister,
+	  unregisterAll: unregisterAll
+	};
 
 /***/ },
 /* 1 */

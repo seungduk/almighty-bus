@@ -18,6 +18,7 @@ function subscribeFunctionsOf(subscribers, eventName) {
   return functions;
 }
 
+const maxCallStackSize = 10;
 const callStack = [];
 function post(eventName, ...parameters) {
   if (callStack.length >= maxCallStackSize) {
@@ -28,7 +29,7 @@ function post(eventName, ...parameters) {
     parameters,
   });
   for (let callback of subscribeFunctionsOf(subscribers, eventName)) {
-    callback(parameters);
+    callback(...parameters);
   }
   callStack.pop();
 }
@@ -44,3 +45,16 @@ function register(subscriber) {
 function unregister(subscriber) {
   _.pull(subscribers, subscriber);
 }
+
+function unregisterAll() {
+  while (subscribers.length > 0) {
+    subscribers.pop();
+  }
+}
+
+module.exports = {
+  post,
+  register,
+  unregister,
+  unregisterAll,
+};
